@@ -1,9 +1,5 @@
-
-// Object of Arrays of characters to be included in the password
-var allCharactersObject = { 
-  
-  // Array of special characters to be included in password
-    specialCharacters: [
+// Array of special characters to be included in password
+    specialCharacters = [
     '@',
     '%',
     '+',
@@ -27,13 +23,13 @@ var allCharactersObject = {
     '-',
     '_',
     '.'
-  ],
+  ];
 
   // Array of numeric characters to be included in password
-  numericCharacters: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+  numericCharacters =  ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
   // Array of lowercase characters to be included in password
-  lowerCasedCharacters: [
+  lowerCasedCharacters =  [
     'a',
     'b',
     'c',
@@ -60,10 +56,10 @@ var allCharactersObject = {
     'x',
     'y',
     'z'
-  ],
+  ];
 
   // Array of uppercase characters to be included in password
-  upperCasedCharacters: [
+  upperCasedCharacters =  [
     'A',
     'B',
     'C',
@@ -90,9 +86,9 @@ var allCharactersObject = {
     'X',
     'Y',
     'Z'
-  ],
+  ];
 
-};
+
 
 
 
@@ -100,6 +96,7 @@ var specialCharTrue; //this is a variable for the special characters
 var upperCharTrue; //this is a variable for the uppercase characters
 var lowCharTrue; //this is a variable for the lowercase characters
 var numbersTrue; //this is a variable for the numeric characters
+var userLength;
 
 let userData = []; //this is an empty array to store password options and answers from the character prompts
 
@@ -107,68 +104,62 @@ let userData = []; //this is an empty array to store password options and answer
 function getPasswordOptions() { 
 
   var userInput = prompt("How long would you like your password to be?  Please input a number between 10 and 64!");// This is the first prompt
-  var userLength = parseInt(userInput); //this is declaring userLength as the userINput and using parseInt to return an Integer from a string (textbox user entry)
+  userLength = parseInt(userInput); //this is declaring userLength as the userINput and using parseInt to return an Integer from a string (textbox user entry)
 
-
+ 
   if (userLength >= 10 && userLength <= 64) {   
     alert ( "Thankyou! Your password will be " + userLength + " characters long.");
   } else if (userLength < 10 || userLength > 64) {
     alert ( "You entered an incorrect number! Please enter a number between 10-64!" );
   };
-
+    
   var specialCharTrue = confirm ("Would you like your password to include Special characters?");
     if (specialCharTrue === true ) { 
-      userData.push(specialCharTrue);
-  } else if (specialCharTrue ===false) {
-    userData.push(specialCharTrue); 
-};
+      userData.push(specialCharacters);
+  }; 
   
   var upperCharTrue = confirm ( "Would you like your password to include uppercase characters?") 
     if (upperCharTrue ===true )  {
-      userData.push(upperCharTrue);  
-  } else if (upperCharTrue ===false) {
-      userData.push(upperCharTrue); 
+      userData.push(upperCasedCharacters);  
   };
   
   var lowCharTrue = confirm ( "Would you like your password to include lowercase characters?") 
   if (lowCharTrue ===true )  { 
-    userData.push(lowCharTrue);
-  } else if (lowCharTrue ===false) {
-    userData.push(lowCharTrue); 
-    
-};
+    userData.push(lowerCasedCharacters);
+  };
 
   var numbersTrue = confirm ( "Would you like your password to include numerical characters?") 
   if (numbersTrue ===true )  {
-    userData.push(numbersTrue);
-  } else if (numbersTrue ===false) {
-    userData.push(numbersTrue); 
-};
+    userData.push(numericCharacters);
+  };
 
-userData.push;
 console.log (userData);
 
 }
 
 
-
-//Function for getting a random element from an object
-function getRandom ()  {
-
-
-
-}
-
 // Function for getting a random element from an array
+
+//
 function getRandom() {
 
 
-}
+
+array.forEach(element => {
+
+  return [Math.floor(Math.random()*userLength)];
+
+});
+
+  
+};
+
+
 
 
 // Function to generate password with user input
 function generatePassword() {
-
+  return ("generated password will go here");
 }
 
 // Get references to the #generate element

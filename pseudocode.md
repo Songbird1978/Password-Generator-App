@@ -4,13 +4,15 @@
 
 -Create an Object from all the arrays of characters
 
--create an array to store user input - empty array with userLength, Uppercasecharacters, Lowercase Characters, Specialcharacters.
+-create an empty array to store user choices.
 
 -create prompt alerts with the following messages:-
 
 1. ask the user how long they would like their password to be.
 
 1a. If the user inputs a number outside of 10-64, an error message is displayed.
+
+1b. The user is asked again, to input their length of password.
 
 2. When answer is correct, store the answer in an empty array variable.
 
