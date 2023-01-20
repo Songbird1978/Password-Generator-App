@@ -10,11 +10,9 @@
 
 1. ask the user how long they would like their password to be.
 
-1a. If the user inputs a numbered decimal or a word, create an error message.
+1a. If the user inputs a number outside of 10-64, an error message is displayed.
 
-1b. contain these in a do while... loop until the answer is true.... then 
-
-2. Store the answer in an empty object variable.
+2. When answer is correct, store the answer in an empty array variable.
 
 3. Ask the user if they want Lowecase - true or false? 
 
