@@ -88,15 +88,11 @@
     'Z'
   ];
 
-
-
-
-
 var specialCharTrue; //this is a variable for the special characters
 var upperCharTrue; //this is a variable for the uppercase characters
 var lowCharTrue; //this is a variable for the lowercase characters
 var numbersTrue; //this is a variable for the numeric characters
-var userLength;
+var userLength; //this is a variable for the userLength - the length of the user input length
 
 let userData = []; //this is an empty array to store password options and answers from the character prompts
 
@@ -107,73 +103,79 @@ function getPasswordOptions() {
   userLength = parseInt(userInput); //this is declaring userLength as the userINput and using parseInt to return an Integer from a string (textbox user entry)
 
  
-  if (userLength >= 10 && userLength <= 64) {   
-    alert ( "Thankyou! Your password will be " + userLength + " characters long.");
-  } else if (userLength < 10 || userLength > 64) {
-    alert ( "You entered an incorrect number! Please enter a number between 10-64!" );
-  };
+  if (userLength >= 10 && userLength <= 64) {   //if userLength is greater than or equal to 10 and less than or equal to 64
+    alert ( "Thankyou! Your password will be " + userLength + " characters long."); //accept that this is their password length
+  } else if (userLength < 10 || userLength > 64) { //if it's below 10 or higher than 64, 
+    alert ( "You entered an incorrect number! Please enter a number between 10-64!" ); //they are reminded to enter a number between 10-64
+    return ;   
+  }; //if false, returns to the beginning of the conditional statements to start again.
+  
+  
+
+
     
   var specialCharTrue = confirm ("Would you like your password to include Special characters?");
-    if (specialCharTrue === true ) { 
-      userData.push(specialCharacters);
+    if (specialCharTrue === true ) { //new variable created for special characters to be true or false
+      userData = userData.concat(specialCharacters); //concatenate the character choices into userData array
   }; 
   
-  var upperCharTrue = confirm ( "Would you like your password to include uppercase characters?") 
-    if (upperCharTrue ===true )  {
-      userData.push(upperCasedCharacters);  
+  var upperCharTrue = confirm ( "Would you like your password to include uppercase characters?"); 
+    if (upperCharTrue ===true )  { //new variable as above
+      userData = userData.concat(upperCasedCharacters);  //concatenation as above
   };
   
-  var lowCharTrue = confirm ( "Would you like your password to include lowercase characters?") 
-  if (lowCharTrue ===true )  { 
-    userData.push(lowerCasedCharacters);
+  var lowCharTrue = confirm ( "Would you like your password to include lowercase characters?"); 
+  if (lowCharTrue ===true )  { //new variable as above 
+    userData = userData.concat(lowerCasedCharacters); //concatenation as above
   };
 
-  var numbersTrue = confirm ( "Would you like your password to include numerical characters?") 
-  if (numbersTrue ===true )  {
-    userData.push(numericCharacters);
-  };
-
-console.log (userData);
-
-}
-
-
-// Function for getting a random element from an array
-
-//
-function getRandom() {
-
-
-
-array.forEach(element => {
-
-  return [Math.floor(Math.random()*userLength)];
-
-});
-
+  var numbersTrue = confirm ( "Would you like your password to include numerical characters?"); 
+  if (numbersTrue ===true )  { //new variable as above
+    userData = userData.concat(numericCharacters); //concatenation as above
+  }; 
   
-};
+  console.log(userData); //this logs the array of user choices. 
+
+
+};  
+
+
+
 
 
 
 
 // Function to generate password with user input
-function generatePassword() {
-  return ("generated password will go here");
+
+
+  function generatePassword() {
+  
+    let reset = document.getElementById("generate");
+    let password = ""; //this ensures that the password is clear each time the function is run.
+  for (let i = 0; i < userLength; i++) { //for loop over the user length
+    let randomIndex = Math.floor(Math.random() * userData.length); //declaring new variable to store random characters
+    password += userData[randomIndex]; //defining the password as the random Index taken from the userData.
+  }
+  return password; //returning password to the WritePassword function
 }
 
 // Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
+var generateBtn = document.querySelector('#generate'); //calling the functions to generate the password within the html document
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
-  var passwordText = document.querySelector('#password');
+  if (password === false) { // if there is no password, return to writePassword.
+    return writePassword();
+  }
+  
+  console.log(password); // console log the password
+  var passwordText = document.querySelector('#password'); //selecting the area of html to put the password
 
-  passwordText.value = password;
+  passwordText.value = password; // writing the password to the html document.
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
+generateBtn.addEventListener('click', writePassword); //generating the functions on click - event listener.
 
-document.addEventListener("DOMContentLoaded", (onclick));
+document.addEventListener("DOMContentLoaded", (onclick)); //making sure that the DOM content is loaded before the javascript runs.
