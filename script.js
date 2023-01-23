@@ -107,7 +107,7 @@ function getPasswordOptions() {
     alert ( "Thankyou! Your password will be " + userLength + " characters long."); //accept that this is their password length
   } else if (userLength < 10 || userLength > 64) { //if it's below 10 or higher than 64, 
     alert ( "You entered an incorrect number! Please enter a number between 10-64!" ); //they are reminded to enter a number between 10-64
-      return false;
+      return getPasswordOptions();
     
   }; //if false, returns to the beginning of the conditional statements to start again.
   
