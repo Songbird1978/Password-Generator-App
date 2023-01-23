@@ -107,7 +107,8 @@ function getPasswordOptions() {
     alert ( "Thankyou! Your password will be " + userLength + " characters long."); //accept that this is their password length
   } else if (userLength < 10 || userLength > 64) { //if it's below 10 or higher than 64, 
     alert ( "You entered an incorrect number! Please enter a number between 10-64!" ); //they are reminded to enter a number between 10-64
-    return ;   
+      return false;
+    
   }; //if false, returns to the beginning of the conditional statements to start again.
   
   
@@ -116,23 +117,24 @@ function getPasswordOptions() {
     
   var specialCharTrue = confirm ("Would you like your password to include Special characters?");
     if (specialCharTrue === true ) { //new variable created for special characters to be true or false
-      userData = userData.concat(specialCharacters); //concatenate the character choices into userData array
-  }; 
+        userData = userData.concat(specialCharacters); //concatenate the character choices into userData array
+      };
   
   var upperCharTrue = confirm ( "Would you like your password to include uppercase characters?"); 
     if (upperCharTrue ===true )  { //new variable as above
-      userData = userData.concat(upperCasedCharacters);  //concatenation as above
-  };
+        userData = userData.concat(upperCasedCharacters);  //concatenation as above
+      
+      }; 
   
   var lowCharTrue = confirm ( "Would you like your password to include lowercase characters?"); 
   if (lowCharTrue ===true )  { //new variable as above 
-    userData = userData.concat(lowerCasedCharacters); //concatenation as above
-  };
+      userData = userData.concat(lowerCasedCharacters); //concatenation as above
+      };
 
   var numbersTrue = confirm ( "Would you like your password to include numerical characters?"); 
   if (numbersTrue ===true )  { //new variable as above
-    userData = userData.concat(numericCharacters); //concatenation as above
-  }; 
+      userData = userData.concat(numericCharacters); //concatenation as above
+      }; 
   
   console.log(userData); //this logs the array of user choices. 
 
@@ -150,9 +152,9 @@ function getPasswordOptions() {
 
   function generatePassword() {
   
-    let reset = document.getElementById("generate");
-    let password = ""; //this ensures that the password is clear each time the function is run.
-  for (let i = 0; i < userLength; i++) { //for loop over the user length
+    let password = 0; //this ensures that the password is clear each time the function is run.
+    localStorage.clear();
+    for (let i = 0; i < userLength; i++) { //for loop over the user length
     let randomIndex = Math.floor(Math.random() * userData.length); //declaring new variable to store random characters
     password += userData[randomIndex]; //defining the password as the random Index taken from the userData.
   }
@@ -166,6 +168,7 @@ var generateBtn = document.querySelector('#generate'); //calling the functions t
 function writePassword() {
   var password = generatePassword();
   if (password === false) { // if there is no password, return to writePassword.
+    
     return writePassword();
   }
   
@@ -176,6 +179,11 @@ function writePassword() {
 }
 
 // Add event listener to generate button
+
+
+
 generateBtn.addEventListener('click', writePassword); //generating the functions on click - event listener.
+//generateBtn.addEventListener ('click', location.reload());
 
 document.addEventListener("DOMContentLoaded", (onclick)); //making sure that the DOM content is loaded before the javascript runs.
+
